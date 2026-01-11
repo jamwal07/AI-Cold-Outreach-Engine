@@ -1,0 +1,55 @@
+{
+    "name": "PlumberAI Secretary V2",
+    "nodes": [
+        {
+            "parameters": {
+                "path": "start-secretary",
+                "responseMode": "lastNode",
+                "options": {}
+            },
+            "id": "e0d0c0b0-a0a0-4000-8000-000000000003",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "e0d0c0b0-a0a0-4000-8000-000000000003"
+        },
+        {
+            "parameters": {
+                "jsCode": "const { exec } = require('child_process');\n\nconst scriptPath = '/Users/chaitanyajamwal/Downloads/YourPlumberAI/YourPlumberAI sever/YourPlumberAI_Outreach/execution/check_replies.py';\n\nreturn new Promise((resolve, reject) => {\n  exec(`python3 \"${scriptPath}\"`, (error, stdout, stderr) => {\n    if (error) {\n      // Even if there is an error, we resolve to show what happened\n      resolve([\n        {\n          json: {\n            success: false,\n            error: error.message,\n            stdout: stdout,\n            stderr: stderr\n          }\n        }\n      ]);\n      return;\n    }\n    resolve([\n      {\n        json: {\n          success: true,\n          stdout: stdout,\n          stderr: stderr\n        }\n      }\n    ]);\n  });\n});"
+            },
+            "id": "e0d0c0b0-a0a0-4000-8000-000000000004",
+            "name": "Run Script via Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 1,
+            "position": [
+                470,
+                300
+            ]
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Run Script via Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": true,
+    "settings": {},
+    "versionId": "2d9208a8-5160-4a18-9960-2886a087713c",
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "plumber_ai_secretary_v2"
+    }
+}
