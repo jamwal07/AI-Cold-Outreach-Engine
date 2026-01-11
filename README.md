@@ -1,3 +1,8 @@
+> ⚠️ **Portfolio Demonstration**
+>
+> This repository is a stripped-down version of a proprietary SaaS system.
+> It is intended strictly for portfolio review and educational purposes.
+> **Commercial use, reproduction, or deployment for business profit is prohibited without a license.**
 # 🚀 AI Cold Outreach Engine
 **Autonomous Lead Discovery & Multi-Step Email Nurturing System**
 
